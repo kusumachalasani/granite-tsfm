@@ -313,6 +313,17 @@ def get_data(
                 "test": 0.2,
             },
         },
+        "kruize": {
+            "dataset_path": os.path.join(data_root_path, "kruize/eap-europe.csv"),
+            "timestamp_column": "interval_start",
+            "id_columns": [],
+            "target_columns": [ "interval_end","container_name","owner_kind","workload","workload_type","namespace","image_name","cpu_request_container_avg","cpu_request_container_sum","cpu_limit_container_avg","cpu_limit_container_sum","cpu_usage_container_avg","cpu_usage_container_min","cpu_usage_container_max","cpu_usage_container_sum","cpu_throttle_container_avg","cpu_throttle_container_max","cpu_throttle_container_sum","memory_request_container_avg","memory_request_container_sum","memory_limit_container_avg","memory_limit_container_sum","memory_usage_container_avg","memory_usage_container_min","memory_usage_container_max","memory_usage_container_sum","memory_rss_usage_container_avg","memory_rss_usage_container_min","memory_rss_usage_container_max","memory_rss_usage_container_sum","k8_object_type","k8_object_name"],
+            "split_config": {
+                "train": [0, 12 * 30 * 24],
+                "valid": [12 * 30 * 24, 12 * 30 * 24 + 4 * 30 * 24],
+                "test": [12 * 30 * 24 + 4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24],
+            },
+        },
     }
     if dataset_name not in config_map.keys():
         raise ValueError(
