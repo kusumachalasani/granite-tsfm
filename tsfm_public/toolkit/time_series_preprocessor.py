@@ -547,6 +547,8 @@ class TimeSeriesPreprocessor(FeatureExtractionMixin):
 
     def _estimate_frequency(self, df: pd.DataFrame):
         if self.timestamp_column:
+            if not pd.api.types.is_datetime64_any_dtype(df[self.timestamp_column]):
+                df[self.timestamp_column] = pd.to_datetime(df[self.timestamp_column])
             if self.id_columns:
                 # to do: be more efficient
                 grps = df.groupby(self.id_columns)
